@@ -50,7 +50,7 @@ export class ContactForm extends React.Component {
   }
 }
 
-ContactForm.PropTypes = {
+ContactForm.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
 };
