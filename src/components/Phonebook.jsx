@@ -11,10 +11,23 @@ class Phonebook extends React.Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const data = localStorage.getItem('contacts');
+    if (data) {
+      this.setState({ contacts: JSON.parse(data) });
+    }
+  }
+
   handleInput = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
+
+  componentDidUpdate(_, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
 
   handleOnSubmitAdd = ({ name, number }) => {
     const alreadyAddedContact = this.state.contacts.find(
